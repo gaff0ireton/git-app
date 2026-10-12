@@ -1,0 +1,9 @@
+@use "./common" as *;
+@use "./layout" as *;
+
+body{
+    // background-color: $bgColor;
+    h1{
+        font-size: clamp(28px,vw-pc(32),32px);
+    }
+}

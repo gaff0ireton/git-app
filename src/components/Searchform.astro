@@ -1,0 +1,36 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<div class="search">
+  <form class="search-form">
+    <input type="search" class="search-form__input" placeholder="Gitコマンドを検索" />
+    <button class="search-form__button" type="submit"><Icon name="mdi:magnify" /></button>
+  </form>
+</div>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.search-form');
+  const input = document.querySelector<HTMLFormElement>('.search-form__input');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const keyword = (input?.value ?? '').toLowerCase();
+
+    console.log(keyword);
+
+    const cards = document.querySelectorAll<HTMLFormElement>('.card');
+
+    cards.forEach((card) => {
+      const text = (card.textContent ?? '').toLowerCase();
+      console.log(text);
+
+      if (text.includes(keyword)) {
+        card.classList.remove('is-not');
+      } else {
+        card.classList.add('is-not');
+      }
+    });
+  });
+</script>

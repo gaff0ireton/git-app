@@ -6,12 +6,26 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --open",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.2.2"
+    "@astrojs/react": "6.0.2",
+    "@iconify/react": "^6.0.2",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "astro": "^7.2.2",
+    "astro-icon": "^1.2.0",
+    "destyle.css": "^4.0.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "sass": "^1.102.0",
+    "tailwind": "^4.0.0"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.140",
+    "@iconify-json/mdi": "^1.2.3"
   }
 }

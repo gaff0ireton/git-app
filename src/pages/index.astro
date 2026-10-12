@@ -1,11 +1,36 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { gitCommands } from '../data/gitCommand';
+import GitCommandCard from '../components/GitCommandCard.astro';
+import Filter from '../components/Filter.astro';
 import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+import '../styles/global.scss';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="gitApp">
+  <div class="app-body">
+    <aside class="sidebar">
+      <div class="sidebar-body">
+        <h2>カテゴリー</h2>
+        <Filter />
+      </div>
+    </aside>
+    <main>
+      <section class="command-list">
+        {
+          gitCommands.map((item) => (
+            <GitCommandCard
+              category={item.category}
+              title={item.title}
+              command={item.command}
+              description={item.description}
+            />
+          ))
+        }
+      </section>
+    </main>
+  </div>
 </Layout>

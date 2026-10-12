@@ -1,0 +1,51 @@
+---
+const sortInfo = [
+  {
+    value: 'default',
+    text: 'デフォルト',
+  },
+  {
+    value: 'asc',
+    text: '名前順（昇順）',
+  },
+  {
+    value: 'desc',
+    text: '名前順（降順）',
+  },
+];
+---
+
+<div class="label">
+  <label for="sort-label">並び順</label>
+
+  <select class="sort-select">
+    {
+      sortInfo.map((item) => {
+        return <option value={item.value}>{item.text}</option>;
+      })
+    }
+  </select>
+</div>
+
+<script>
+  const select = document.querySelector('.sort-select');
+  const cards = [...document.querySelectorAll('.card')];
+
+  select?.addEventListener('change', () => {
+    console.log(select.value);
+
+    const sortedCards = cards.toSorted((a, b) => {
+      const aTitle = a.querySelector('h3')?.textContent?.trim() ?? '';
+      const bTitle = b.querySelector('h3')?.textContent?.trim() ?? '';
+
+      return aTitle.localeCompare(bTitle, 'ja');
+    });
+
+    console.log(sortedCards);
+    const cardList = document.querySelector('.command-list');
+
+    sortedCards.forEach((card) => {
+      cardList?.append(card);
+    });
+  });
+</script>

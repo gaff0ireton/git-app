@@ -1,0 +1,67 @@
+---
+const categories = [
+  { label: 'すべて', value: 'all' },
+  { label: '基本', value: 'basic' },
+  { label: 'ブランチ', value: 'branch' },
+  { label: 'コミット', value: 'commit' },
+  { label: 'リモート', value: 'remote' },
+  { label: 'スタッシュ', value: 'stash' },
+  { label: '取り消し', value: 'undo' },
+];
+---
+
+<nav>
+  <ul class="filter-list">
+    {
+      categories.map((item) => (
+        <li>
+          <button
+            class:list={[
+              'filter-button',
+              {
+                'is-active': item.label === 'すべて',
+              },
+            ]}
+            type="button"
+            data-category={item.value}
+          >
+            {item.label}
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLFormElement>('.filter-button');
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.category;
+      const activeButton = document.querySelector('.filter-button.is-active');
+      console.log(activeButton);
+
+      if (activeButton) {
+        activeButton.classList.remove('is-active');
+        button.classList.add('is-active');
+      }
+
+      const cards = [...document.querySelectorAll<HTMLFormElement>('.card')];
+
+      const filteredCards = cards.filter((card) => {
+        return card.dataset.category === category;
+      });
+
+      cards.forEach((card) => {
+        if (category === 'all') {
+          card.classList.remove('is-not');
+        } else if (!filteredCards.includes(card)) {
+          card.classList.add('is-not');
+        } else {
+          card.classList.remove('is-not');
+        }
+      });
+    });
+  });
+</script>

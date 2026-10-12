@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  command: string;
+  description: string;
+  category: string;
+}
+
+import Command from './Command.tsx';
+
+const { title, command, description, category } = Astro.props;
+---
+
+<article class="card" data-category={category}>
+  <header class="card__header">
+    <h3>{title}</h3>
+  </header>
+  <div class="card__body">
+    <p>{description}</p>
+    <Command command={command} client:load />
+  </div>
+</article>

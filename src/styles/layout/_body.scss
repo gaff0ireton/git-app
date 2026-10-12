@@ -1,0 +1,208 @@
+// ② common/_index.scss を読み込む（mixin が使える）
+@use "../common" as *;
+
+/* ページ全体のスタイル */
+
+html {
+  font-size: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $acColor;
+  border-radius: 5px;
+
+}
+
+.sp-only {
+  @include mq() {
+    display: block;
+  }
+
+  @include mq-min() {
+    display: none !important;
+  }
+}
+
+.pc-only {
+  @include mq() {
+    display: none !important;
+  }
+
+  @include mq-min() {
+    display: block;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.is-inview {
+  opacity: 0;
+  translate: 0 16px;
+  transition: 1s ease;
+}
+
+.is-view {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.is-not {
+  display: none;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  max-width: 1024px;
+  width: 90%;
+  border: 1px solid $bdColor;
+  border-radius: 1rem;
+  overflow: hidden;
+  height: 90dvh;
+
+  &-body {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 2rem;
+    flex: 1;
+    min-height: 0;
+    padding: 0 0 0 2rem;
+
+    @include mq() {
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 0 vw(24, 375);
+      gap: vw(16, 375);
+    }
+  }
+}
+
+body {
+  font-family: $txtFont;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #f1ecd9;
+}
+
+main {
+  flex: 1;
+  min-height: 0;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 2rem 2rem 0;
+
+  @include mq() {
+    flex: 1;
+    min-height: 0;
+    padding: 0 vw(14, 375) 0 0;
+  }
+
+  >* {
+    align-self: stretch;
+  }
+}
+
+p,
+li,
+a,
+figcaption,
+dd,
+dt {
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: $fs-md;
+  color: $txtColor;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $hdFont;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: .02em;
+}
+
+p {
+  letter-spacing: 0.03em;
+  white-space: pre-wrap;
+
+  &+p {
+    margin-top: 0.5em;
+  }
+}
+
+li,
+dt {
+  line-height: 1.4;
+  margin: 0;
+}
+
+picture {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  background: $bgColor;
+}
+
+.command-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contents-wrapper {}
+
+.main-wrapper {}
+
+.no-scroll {
+  overflow: hidden;
+  touch-action: none;
+}
+
+.no-active {
+  transition-property: opacity;
+  transition-delay: 0.9s;
+  transition-duration: 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}

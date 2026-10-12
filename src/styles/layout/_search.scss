@@ -1,0 +1,27 @@
+@use "../common" as *;
+
+.search {
+    &-form {
+        display: flex;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        border: 1px solid $txtColor;
+
+        &__input {
+            outline: none;
+            background: $bgColor;
+            padding: .5rem 2rem;
+            font-size: .85rem;
+
+            @include mq() {
+                padding: vw(4, 375) vw(8, 375) vw(4, 375) vw(16, 375);
+            }
+        }
+
+        &__button {
+            background: $bdColor;
+            padding: .5rem .75rem;
+            color: $bgColor;
+        }
+    }
+}
