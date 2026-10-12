@@ -75,6 +75,15 @@ html {
   overflow: hidden;
   height: 95dvh;
 
+  @include mq() {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 0;
+    overflow: auto;
+  }
+
   &-body {
     display: grid;
     grid-template-columns: 200px minmax(0, 1fr);
@@ -86,7 +95,7 @@ html {
     @include mq() {
       display: flex;
       flex-direction: column;
-      padding: 0 0 0 vw(24, 375);
+      padding: 0 vw(24, 375);
       gap: vw(16, 375);
     }
   }
@@ -114,7 +123,7 @@ main {
   @include mq() {
     flex: 1;
     min-height: 0;
-    padding: 0 vw(14, 375) 0 0;
+    padding: 0;
   }
 
   >* {
