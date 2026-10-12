@@ -10,6 +10,6 @@ export default defineConfig({
     react(),
     icon(),
   ],
-  site: 'https://gaff.github.io',
+  site: 'https://gaff0ireton.github.io',
   base: '/git-app',
 });
