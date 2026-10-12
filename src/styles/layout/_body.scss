@@ -73,7 +73,7 @@ html {
   border: 1px solid $bdColor;
   border-radius: 1rem;
   overflow: hidden;
-  height: 90dvh;
+  height: 95dvh;
 
   &-body {
     display: grid;
@@ -94,7 +94,7 @@ html {
 
 body {
   font-family: $txtFont;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: grid;
   place-items: center;
   background: #f1ecd9;
