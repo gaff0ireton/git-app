@@ -9,8 +9,7 @@ export default defineConfig({
   integrations: [
     react(),
     icon(),
-    site: 'https://gaff.github.io',
-    base: '/git-app',
-
   ],
+  site: 'https://gaff.github.io',
+  base: '/git-app',
 });
