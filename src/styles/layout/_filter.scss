@@ -52,12 +52,10 @@
 
 .sidebar {
     overflow-y: auto;
-    padding-top: 2rem;
 
     @include mq() {
         flex-shrink: 0;
         overflow-y: visible;
-        padding: vw(24, 375) 0 0;
     }
 
     &-body {
