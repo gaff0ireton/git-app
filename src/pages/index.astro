@@ -1,6 +1,7 @@
 ---
 import { gitCommands } from '../data/gitCommand';
 import GitCommandCard from '../components/GitCommandCard.astro';
+import Searchform from '../components/Searchform.astro';
 import Filter from '../components/Filter.astro';
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
@@ -12,12 +13,11 @@ import '../styles/global.scss';
 
 <Layout title="gitApp">
   <div class="app-body">
-    <aside class="sidebar">
-      <div class="sidebar-body">
-        <h2>カテゴリー</h2>
-        <Filter />
-      </div>
-    </aside>
+    <div class="command-filter">
+      <Searchform />
+      <Filter />
+    </div>
+    <p class="number-text"></p>
     <main>
       <section class="command-list">
         {

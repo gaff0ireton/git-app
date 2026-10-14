@@ -8,34 +8,20 @@
 }
 
 .card {
+    background: $color--cardBack;
+    border-radius: .5rem;
+    padding: 1rem;
+    color: $color--mainText;
 
     &__header {
-        background: $scColor;
-        border-left: .5rem solid $acColor;
-        padding: var(--tab-padding);
-
-        &-box {
+        h3 {
             display: flex;
-            gap: .5rem;
+            justify-content: space-between;
 
             span {
-                width: .75rem;
-                height: .75rem;
-                border-radius: 50%;
-
-                &:first-of-type {
-                    background-color: #F94747;
-                    border: 1px solid #D52826;
-                }
-
-                &:nth-of-type(2) {
-                    background-color: #FBB023;
-                    border: 1px solid #D68F01;
-                }
-
-                &:last-of-type {
-                    background-color: #28C631;
-                    border: 1px solid #1EA523;
+                &:last-child {
+                    color: $color--sub;
+                    text-transform: uppercase;
                 }
             }
         }
@@ -44,13 +30,17 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            border-bottom: 1px solid var(--code-color);
+            border-bottom: 1px solid $color--subBack;
             padding-bottom: var(--tab-padding);
 
             p {
                 font-size: 1rem;
                 font-weight: 600;
                 flex: 1;
+            }
+
+            button {
+                color: $color--accent;
             }
         }
     }
@@ -92,21 +82,21 @@
     }
 
     &__code {
-        background: $bdColor;
+        background: $color--mainBack;
         color: var(--code-color);
         border-radius: .5rem;
         padding: var(--tab-padding);
-
-        p {
-            color: var(--code-color);
-        }
     }
 
     &__body {
-        padding: 1rem;
+        padding-top: 1rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
+
+        >p {
+            color: $color--subText;
+        }
     }
 
     pre {

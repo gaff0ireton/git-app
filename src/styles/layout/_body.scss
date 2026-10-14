@@ -69,12 +69,12 @@ html {
 
   &-body {
     max-width: 1200px;
-    display: grid;
-    grid-template-columns: 200px minmax(0, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
     flex: 1;
     min-height: 0;
-    padding: 2rem 2rem 0;
+    padding: 6rem 2rem;
     margin: 0 auto;
 
     @include mq() {
@@ -120,7 +120,7 @@ dt {
   font-weight: 400;
   font-style: normal;
   font-size: $fs-md;
-  color: $txtColor;
+  color: $color--mainText;
 }
 
 h1,
@@ -169,7 +169,7 @@ picture {
 body {
   position: relative;
   overflow-x: hidden;
-  background: $bgColor;
+  background: $color--mainBack;
 }
 
 .command-list {

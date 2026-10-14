@@ -2,7 +2,7 @@
 @use "../common" as *;
 
 .header {
-    background: $acColor;
+    background: $color--accent;
     display: flex;
     justify-content: space-between;
     align-items: center;

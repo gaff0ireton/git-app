@@ -65,17 +65,14 @@
 	flex-direction: column;
 	gap: .5em;
 	border-radius: clamp(44px, vw-pc(50), 50px);
-	border: solid 5px $acColor;
 	padding: clamp(28px, vw-pc(32), 32px);
-	background-color: $cardColor;
-	box-shadow: clamp(28px, vw-pc(32), 32px) clamp(28px, vw-pc(32), 32px) 0px 0px $scColor;
 
 
 	@include mq() {
 		padding: vw(32, 750);
 		border-width: vw(3, 375);
 		border-radius: vw(25, 375);
-		box-shadow: vw(16, 750) vw(16, 750) 0px 0px $scColor;
+		box-shadow: vw(16, 750) vw(16, 750) 0px 0px;
 	}
 }
 

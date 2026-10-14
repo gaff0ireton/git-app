@@ -1,17 +1,17 @@
 ---
 const categories = [
-  { label: 'すべて', value: 'all' },
-  { label: '基本', value: 'basic' },
-  { label: 'ブランチ', value: 'branch' },
-  { label: 'コミット', value: 'commit' },
-  { label: 'リモート', value: 'remote' },
-  { label: 'スタッシュ', value: 'stash' },
-  { label: '取り消し', value: 'undo' },
+  { label: 'All', value: 'all' },
+  { label: 'Basic', value: 'basic' },
+  { label: 'Branch', value: 'branch' },
+  { label: 'Commit', value: 'commit' },
+  { label: 'Remote', value: 'remote' },
+  { label: 'Stash', value: 'stash' },
+  { label: 'Undo', value: 'undo' },
 ];
 ---
 
-<nav>
-  <ul class="filter-list">
+<div class="command-filter__nav" role="group">
+  <ul class="command-filter__list">
     {
       categories.map((item) => (
         <li>
@@ -19,7 +19,7 @@ const categories = [
             class:list={[
               'filter-button',
               {
-                'is-active': item.label === 'すべて',
+                'is-active': item.label === 'All',
               },
             ]}
             type="button"
@@ -31,37 +31,47 @@ const categories = [
       ))
     }
   </ul>
-</nav>
+</div>
 
 <script>
-  const buttons = document.querySelectorAll<HTMLFormElement>('.filter-button');
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-button');
+
+  function render(button) {
+    const category = button?.dataset.category ?? buttons[0].dataset.category;
+    const activeButton = document.querySelector('.filter-button.is-active');
+    const numberText = document.querySelector('.number-text');
+
+    if (button) {
+      activeButton.classList.remove('is-active');
+      button.classList.add('is-active');
+    }
+
+    const cards = [...document.querySelectorAll<HTMLElement>('.card')];
+
+    const filteredCards = cards.filter((card) => {
+      return category === 'all' || card.dataset.category === category;
+    });
+
+    console.log(filteredCards.length);
+
+    numberText.textContent = `全${filteredCards.length}件`;
+
+    cards.forEach((card) => {
+      if (category === 'all') {
+        card.classList.remove('is-not');
+      } else if (!filteredCards.includes(card)) {
+        card.classList.add('is-not');
+      } else {
+        card.classList.remove('is-not');
+      }
+    });
+  }
+
+  render();
 
   buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const category = button.dataset.category;
-      const activeButton = document.querySelector('.filter-button.is-active');
-      console.log(activeButton);
-
-      if (activeButton) {
-        activeButton.classList.remove('is-active');
-        button.classList.add('is-active');
-      }
-
-      const cards = [...document.querySelectorAll<HTMLFormElement>('.card')];
-
-      const filteredCards = cards.filter((card) => {
-        return card.dataset.category === category;
-      });
-
-      cards.forEach((card) => {
-        if (category === 'all') {
-          card.classList.remove('is-not');
-        } else if (!filteredCards.includes(card)) {
-          card.classList.add('is-not');
-        } else {
-          card.classList.remove('is-not');
-        }
-      });
+    button.addEventListener('click', (e) => {
+      render(button);
     });
   });
 </script>
