@@ -35,6 +35,7 @@ const categories = [
 
 <script>
   const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-button');
+  const input = document.querySelector<HTMLInputElement>('.command-search');
 
   function render(button) {
     const category = button?.dataset.category ?? buttons[0].dataset.category;
@@ -72,6 +73,7 @@ const categories = [
   buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
       render(button);
+      if (input) input.value = '';
     });
   });
 </script>

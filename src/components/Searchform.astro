@@ -12,8 +12,13 @@
 
     const keyword = (input?.value.trim() ?? '').toLowerCase();
     const numberText = document.querySelector('.number-text');
+    const btns = document.querySelectorAll('.filter-button');
 
-    console.log(keyword);
+    btns.forEach((btn) => {
+      btn.classList.remove('is-active');
+    });
+
+    btns[0].classList.add('is-active');
 
     const cards = [...document.querySelectorAll<HTMLElement>('.card')];
 
