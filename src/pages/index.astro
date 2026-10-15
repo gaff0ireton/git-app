@@ -6,6 +6,7 @@ import Filter from '../components/Filter.astro';
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 import '../styles/global.scss';
+import { Icon } from 'astro-icon/components';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -13,12 +14,12 @@ import '../styles/global.scss';
 
 <Layout title="gitApp">
   <div class="app-body">
-    <div class="command-filter">
-      <Searchform />
-      <Filter />
-    </div>
-    <p class="number-text"></p>
     <main>
+      <div class="command-filter">
+        <Searchform />
+        <Filter />
+      </div>
+      <p class="number-text"></p>
       <section class="command-list">
         {
           gitCommands.map((item) => (
@@ -31,6 +32,11 @@ import '../styles/global.scss';
           ))
         }
       </section>
+      <div class="empty-result" hidden>
+        <Icon name="lucide:search-x" width={32} height={32} style="color: #94a3b8" />
+        <p>該当するコマンドがありません</p>
+        <p>別のキーワードで検索してみてください</p>
+      </div>
     </main>
   </div>
 </Layout>

@@ -34,45 +34,29 @@ const categories = [
 </div>
 
 <script>
+  import { filterByCategory } from '../scripts/filterCategory';
+  import { updateCards, updateActiveButton } from '../scripts/ui';
+
   const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-button');
   const input = document.querySelector<HTMLInputElement>('.command-search');
+  const cards = [...document.querySelectorAll<HTMLElement>('.card')];
 
-  function render(button) {
-    const category = button?.dataset.category ?? buttons[0].dataset.category;
-    const activeButton = document.querySelector('.filter-button.is-active');
-    const numberText = document.querySelector('.number-text');
+  function render(category: string) {
+    const filteredCards = filterByCategory(cards, category);
 
-    if (button) {
-      activeButton.classList.remove('is-active');
-      button.classList.add('is-active');
-    }
-
-    const cards = [...document.querySelectorAll<HTMLElement>('.card')];
-
-    const filteredCards = cards.filter((card) => {
-      return category === 'all' || card.dataset.category === category;
-    });
-
-    console.log(filteredCards.length);
-
-    numberText.textContent = `全${filteredCards.length}件`;
-
-    cards.forEach((card) => {
-      if (category === 'all') {
-        card.classList.remove('is-not');
-      } else if (!filteredCards.includes(card)) {
-        card.classList.add('is-not');
-      } else {
-        card.classList.remove('is-not');
-      }
-    });
+    updateCards(cards, filteredCards);
   }
 
-  render();
+  // 初期表示
+  render('all');
 
   buttons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      render(button);
+    button.addEventListener('click', () => {
+      const category = button.dataset.category ?? 'all';
+
+      updateActiveButton(buttons, button);
+      render(category);
+
       if (input) input.value = '';
     });
   });

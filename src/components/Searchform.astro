@@ -1,44 +1,27 @@
-<form class="command-filter__search" role="search">
+<div class="command-filter__search" role="search">
   <label for="command-search" class="visually-hidden"> コマンドを検索 </label>
   <input type="search" class="command-search" placeholder="コマンドを検索..." />
-</form>
+</div>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>('.command-filter__search');
+  import { filterCards } from '../scripts/filterCards';
+  import { updateCards } from '../scripts/ui';
+  import { resetCategory } from '../scripts/resetCategory';
+
   const input = document.querySelector<HTMLInputElement>('.command-search');
+  const btns = document.querySelectorAll('.filter-button');
+  const cards = [...document.querySelectorAll<HTMLElement>('.card')];
 
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
+  input?.addEventListener('input', () => {
+    const keyword = input.value;
 
-    const keyword = (input?.value.trim() ?? '').toLowerCase();
-    const numberText = document.querySelector('.number-text');
-    const btns = document.querySelectorAll('.filter-button');
+    // カテゴリ選択をリセット
+    resetCategory(btns);
 
-    btns.forEach((btn) => {
-      btn.classList.remove('is-active');
-    });
+    // 検索
+    const filteredCards = filterCards(cards, keyword);
 
-    btns[0].classList.add('is-active');
-
-    const cards = [...document.querySelectorAll<HTMLElement>('.card')];
-
-    const filteredCards = cards.filter((card) => {
-      const text = (card.textContent ?? '').toLowerCase();
-      return text.includes(keyword);
-    });
-
-    console.log(filteredCards);
-
-    numberText.textContent = `全${filteredCards.length}件`;
-
-    cards.forEach((card) => {
-      const text = (card.textContent ?? '').toLowerCase();
-
-      if (text.includes(keyword)) {
-        card.classList.remove('is-not');
-      } else {
-        card.classList.add('is-not');
-      }
-    });
+    // UI更新
+    updateCards(cards, filteredCards);
   });
 </script>
