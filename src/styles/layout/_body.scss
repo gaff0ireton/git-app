@@ -69,18 +69,18 @@ html {
 
   &-body {
     max-width: 1200px;
+    width: 90%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
     flex: 1;
     min-height: 0;
-    padding: 6rem 2rem;
+    padding: 0 0 6rem;
     margin: 0 auto;
 
     @include mq() {
       display: flex;
       flex-direction: column;
-      padding: vw(24, 375);
       gap: vw(16, 375);
     }
   }

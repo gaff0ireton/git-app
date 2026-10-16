@@ -2,47 +2,15 @@
 @use "../common" as *;
 
 .header {
-    background: $color--accent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    padding: 2rem;
-    flex-shrink: 0;
+    max-width: 1200px;
+    width: 90%;
+    padding: 2rem 0;
+    margin: 0 auto;
+    color: $color--accent;
+    font-size: 1.375rem;
+    font-weight: 700;
 
     @include mq() {
-        padding: vw(16, 375);
         gap: vw(8, 375);
-    }
-
-    &__box {
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        flex: 1;
-        gap: .5rem;
-
-        span {
-            width: .75rem;
-            height: .75rem;
-            aspect-ratio: 1/1;
-            border-radius: 50%;
-            flex: none;
-
-            &:first-of-type {
-                background-color: #F94747;
-                border: 1px solid #D52826;
-            }
-
-            &:nth-of-type(2) {
-                background-color: #FBB023;
-                border: 1px solid #D68F01;
-            }
-
-            &:last-of-type {
-                background-color: #28C631;
-                border: 1px solid #1EA523;
-            }
-        }
     }
 }
